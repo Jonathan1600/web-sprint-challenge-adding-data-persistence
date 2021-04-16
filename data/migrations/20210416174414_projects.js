@@ -1,6 +1,6 @@
 
 exports.up = function (knex) {
-    return knex.shcema
+    return knex.schema
         .createTable("projects", table => {
             table.increments("project_id")
             table.string("project_name", 128).notNullable()
@@ -21,7 +21,7 @@ exports.up = function (knex) {
                 .unsigned()
                 .references("project_id") //FOREIGN KEY CONNECTION!!
                 .inTable("projects")
-                .onDelete("RESTRICT")
+
         })
         .createTable("project_resources", table => {
             table.increments("project_resources_id")
@@ -30,13 +30,13 @@ exports.up = function (knex) {
                 .notNullable()
                 .references("project_id") //FOREIGN KEY CONNECTION!!
                 .inTable("projects")
-                .onDelete("RESTRICT") //RESTRICT
+
             table.integer("resource_id")
                 .unsigned()
                 .notNullable()
                 .references("resource_id") //FOREIGN KEY CONNECTION!!
                 .inTable("resources")
-                .onDelete("RESTRICT") //RESTRICT
+
         })
 };
 
