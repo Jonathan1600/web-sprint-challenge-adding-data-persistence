@@ -20,14 +20,30 @@ exports.up = function (knex) {
             table.integer("project_id")
                 .unsigned()
                 .references("project_id") //FOREIGN KEY CONNECTION!!
-                .inTable("project")
+                .inTable("projects")
                 .onDelete("RESTRICT")
         })
         .createTable("project_resources", table => {
-
+            table.increments("project_resources_id")
+            table.integer("project_id")
+                .unsigned()
+                .notNullable()
+                .references("project_id") //FOREIGN KEY CONNECTION!!
+                .inTable("projects")
+                .onDelete("RESTRICT") //RESTRICT
+            table.integer("resource_id")
+                .unsigned()
+                .notNullable()
+                .references("resource_id") //FOREIGN KEY CONNECTION!!
+                .inTable("resources")
+                .onDelete("RESTRICT") //RESTRICT
         })
 };
 
 exports.down = function (knex) {
-
+    return knex.schema
+        .dropTableIfExists("project_resources")
+        .dropTableIfExists("tasks")
+        .dropTableIfExists("resources")
+        .dropTableIfExists("projects")
 };
