@@ -1,5 +1,4 @@
 const Resources = require("./resource/model");
-const Projects = require("./project/model");
 
 const checkNameUnique = async (req, res, next) => {
     // DO YOUR MAGIC
