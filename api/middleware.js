@@ -1,4 +1,5 @@
 const Resources = require("./resource/model");
+const Projects = require("./project/model");
 
 const checkNameUnique = async (req, res, next) => {
     // DO YOUR MAGIC
@@ -15,6 +16,20 @@ const checkNameUnique = async (req, res, next) => {
     nameTaken ? res.status(400).json({ message: `A resource with the name ${newResource.resource_name} already exists` }) : next()
 }
 
+const checkTaskBody = (req, res, next) => {
+    // DO YOUR MAGIC
+    const newTask = req.body
+    if (!newTask) {
+        res.status(400).json({ message: "Valid task description and a valid project id are required" })
+    } else if (!newTask.task_description || !newTask.project_id) {
+        res.status(400).json({ message: "Valid task description and a valid project id are required" })
+    } else {
+        next()
+    }
+
+}
+
 module.exports = {
     checkNameUnique,
+    checkTaskBody
 }
