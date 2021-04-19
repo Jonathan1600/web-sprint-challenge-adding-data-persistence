@@ -21,7 +21,7 @@ exports.up = function (knex) {
                 .unsigned()
                 .references("project_id") //FOREIGN KEY CONNECTION!!
                 .inTable("projects")
-
+                .onDelete("CASCADE")
         })
         .createTable("project_resources", table => {
             table.increments("project_resources_id")
@@ -30,12 +30,14 @@ exports.up = function (knex) {
                 .notNullable()
                 .references("project_id") //FOREIGN KEY CONNECTION!!
                 .inTable("projects")
+                .onDelete("CASCADE")
 
             table.integer("resource_id")
                 .unsigned()
                 .notNullable()
                 .references("resource_id") //FOREIGN KEY CONNECTION!!
                 .inTable("resources")
+                .onDelete("CASCADE")
 
         })
 };

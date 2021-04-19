@@ -7,7 +7,7 @@ const checkNameUnique = async (req, res, next) => {
     let nameTaken = false;
 
     resources.forEach(element => {
-        if (element.resource_name == newResource.resource_name) {
+        if (element.resource_name === newResource.resource_name) {
             nameTaken = true;
         }
     });
